@@ -1,15 +1,14 @@
 import { combineReducers } from 'redux';
-import {ADD_RECIPE, ADD_INGREDIENT} from '../constants/action.types';
+import {ADD_RECIPE, ADD_INGREDIENT, SET_RECIPES} from '../constants/action.types';
 
 const recipesReducer = (recipes, action) => {
-
-console.log('recipesReducer'+action.type);
-
 
 	if (recipes) {
 		switch (action.type) {
 			case ADD_RECIPE:
 				return recipes.concat({name: action.name});
+			case SET_RECIPES:
+				return action.payload.recipes;
 			default:
 				return recipes;
 		}
@@ -20,9 +19,6 @@ console.log('recipesReducer'+action.type);
 };
 
 const ingredientsReducer = (ingredients, action) => {
-
-console.log('ingredientsReducer'+action.type);
-	
 	if (ingredients) {
 		switch (action.type) {
 			case ADD_INGREDIENT:

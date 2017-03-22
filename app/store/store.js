@@ -1,9 +1,11 @@
 
-import { createStore } from 'redux';
+import { createStore,applyMiddleware } from 'redux';
 
 import rootReducer from '../reducers/root';
+import logMiddleware from '../middleware/midd';
+import apiMiddleware from '../middleware/api';
 
-
+/*
 const initialState = {
 	recipes: [
 	   {
@@ -24,7 +26,11 @@ const initialState = {
 	    }
 	 ]
  };
+*/
 
-
-const store = createStore(rootReducer, initialState);
+const store = createStore(
+		rootReducer, 
+//		initialState,
+		applyMiddleware(logMiddleware, apiMiddleware)
+		);
 export default store;
